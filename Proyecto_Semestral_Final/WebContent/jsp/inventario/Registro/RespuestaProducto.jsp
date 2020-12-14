@@ -1,3 +1,4 @@
+<%@page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
 				<img src="images/img-03.png" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form">
+			<form class="contact1-form validate-form" >
 				<span class="contact1-form-title">
 					Respuesta creacion de producto
 				</span>
@@ -43,12 +44,11 @@
 					<span class="shadow-input1"></span>
 				</div>
 				<div class="container-contact1-form-btn">
-					<button class="contact1-form-btn">
-						<span>
-							<a href="/Proyecto_Semestral_Final/ServletInventario?accion=registroProd">Regresar</a>
-							<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-						</span>
-					</button>
+				<a class="contact1-form-btn" href="/Proyecto_Semestral_Final/ServletInventario?accion=registroProd">Regresar 
+					<span>
+						<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+					</span>
+				  </a>
 				</div>
 			</form>
 			

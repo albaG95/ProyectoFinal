@@ -57,7 +57,7 @@ public class Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
-		 HttpSession sesion = request.getSession();
+		HttpSession sesion=request.getSession(true);
 		if (accion !=null) {
 			 if(accion.equals("login")) {
 				 getServletContext().getRequestDispatcher(rutaJsp+"login.jsp").forward(request,response);
@@ -91,12 +91,30 @@ public class Servlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				HttpSession sesion=request.getSession(true);
 				if (accion !=null) {
 					 if (accion.equals("iniciarSeccion")){
 						 String usuario=request.getParameter("email");
 						 String password=request.getParameter("password");
+						 if(usuario==""  || password=="") {
+							 getServletContext().getRequestDispatcher(rutaJsp+"login.jsp").forward(request,response);
+						 }
+						 int Intentos =0;
+						 String eMail="";
+						 try {
+						 Intentos= (int) sesion.getAttribute("intentos");
 						 
+						 } catch (Exception e) {
+								// TODO Auto-generated catch block
+								//e.printStackTrace();
+							}
+						 try {
+							 eMail=  (String) sesion.getAttribute("usuario");
+							 
+							 } catch (Exception e) {
+									// TODO Auto-generated catch block
+									//e.printStackTrace();
+								}
 						 login userlogin = new login(con);
 						 if (userlogin.loginCheck(usuario, password)) {
 						 Administrador uselogin = new login(con).getUserRol(usuario, password);
@@ -104,7 +122,6 @@ public class Servlet extends HttpServlet {
 						 request.setAttribute("usuario",usuario);			 
 						 request.setAttribute("password", password);
 						 //Ambito Seccion
-						 HttpSession sesion = request.getSession();
 						 sesion.setAttribute("login",true);
 						 
 						 if(uselogin.getRolId()==1) {
@@ -118,10 +135,22 @@ public class Servlet extends HttpServlet {
 							 getServletContext().getRequestDispatcher(rutaJsp+"Admin/Administrador.jsp").forward(request,response);
 						 }
 					    }else {
-					    	System.out.println("Usuario o Contraseña Incorrecta");
+					    	
+					    	if (eMail ==usuario) {
+					    		Intentos++;
+						    	sesion.setAttribute("intentos", Intentos);
+						    	sesion.setAttribute("usuario",usuario);
+					    	}else {
+					    		sesion.setAttribute("intentos", 0);
+					    		sesion.setAttribute("usuario",usuario);
+					    	}
+					    	
+					    	System.out.println("Usuario o Contraseña Incorrecta: intentos restantes: "+Intentos);
 					    	PrintWriter out = response.getWriter();
 					    	out.println("<br>");
 					    	out.println("Usuario o Contraseña Incorrecta");
+					    	
+					    	getServletContext().getRequestDispatcher(rutaJsp+"login.jsp").forward(request,response);
 					    }
 					 }
 				}

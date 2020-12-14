@@ -1,3 +1,4 @@
+<%@page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,14 +91,16 @@
 <!--===============================================================================================-->
 	<script src="<%=request.getContextPath()%>/js/mainAddProducto.js"></script>
 <script type="text/javascript">
-/*$("#precio").on("keyup", function(){
-    var valid = /^(\d{1,3})(\.\d{2})$/.test(this.value),
-        val = this.value;
-    
-    if(!valid){
-        this.value = val.substring(0, val.length - 1);
-    }
-});*/
+$(document).ready(function () {
+	$('#precio').blur(function (e) {
+	    this.value = parseFloat((this.value.replace(/(?!-)[^0-9.]/g, "")), 10)
+	        .toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+	        .toString();
+	    if (this.value === 'NaN') {
+	        this.value = '';
+	    }
+	});
+});
 </script>
 </body>
 </html>

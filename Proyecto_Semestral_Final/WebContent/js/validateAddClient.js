@@ -41,13 +41,13 @@
     }
 
     function showValidate(input) {
-        var thisAlert = $(input).parent();
+        var thisAlert = $(input).parent('.validate-input');
 
         $(thisAlert).addClass('alert-validate');
     }
 
     function hideValidate(input) {
-        var thisAlert = $(input).parent();
+        var thisAlert = $(input).parent('.validate-input');
 
         $(thisAlert).removeClass('alert-validate');
     }
