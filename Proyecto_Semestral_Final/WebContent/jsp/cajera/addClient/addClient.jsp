@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V1</title>
+	<title>Add Client</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/formulario.css" type="text/css"/>
@@ -33,22 +33,46 @@
 				<img src="images/img-03.png" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form">
+			<form class="contact1-form validate-form" method="post" action="/Proyecto_Semestral_Final/ServletCajera?accion=AddClient" >
 				<span class="contact1-form-title">
-					Respuesta creacion de usuario
+					Datos del nuevo cliente
 				</span>
 
-				<div class="wrap-input1 validate-input" data-validate = "El nombre es requerido">
-					<P class="input1"><% out.println(" Tu usuario es :"+request.getAttribute("addUserResponse"));%>	</p>
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido">
+					<input class="input1" type="text" name="nombre" id="nombre" placeholder="Nombre completo">
 					<span class="shadow-input1"></span>
 				</div>
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido">
+					<input class="input1" type="text" name="apellido" id="apellido" placeholder="Apellido">
+					<span class="shadow-input1"></span>
+				</div>
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido">
+					<input class="input1" type="text" name="cedula" id="cedula" placeholder="cedula">
+					<span class="shadow-input1"></span>
+				</div>
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido">
+					<input class="input1" type="text" name="celular" id="celular" placeholder="celular">
+					<span class="shadow-input1"></span>
+				</div>
+				
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido: ejemplo@abc.com">
+					<input class="input1" type="text" name="email" id="email" placeholder="Correo Electrónico">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "El campo es requerido">
+					<textarea class="input1" name="direccion" placeholder="direccion"></textarea>
+					<span class="shadow-input1"></span>
+				</div>
+
 				<div class="container-contact1-form-btn">
-					<button class="contact1-form-btn">
+					<button  class="contact1-form-btn">
 						<span>
-							<a href="/Proyecto_Semestral_Final/AdminUsers?accion=createUser">Regresar</a>
-							<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+							Crear cliente
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 						</span>
 					</button>
+					
 				</div>
 			</form>
 			
@@ -73,7 +97,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="<%=request.getContextPath()%>/js/mainUsersAdd.js"></script>
+	<script src="<%=request.getContextPath()%>/js/validateAddClient.js"></script>
 
 </body>
 </html>

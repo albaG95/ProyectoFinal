@@ -43,4 +43,32 @@
     <servlet-name>AdminUsers</servlet-name>
     <url-pattern>/AdminUsers</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletInventario</display-name>
+    <servlet-name>ServletInventario</servlet-name>
+    <servlet-class>com.inventario.ServletInventario</servlet-class>
+    <init-param>
+      <param-name>rutaJsp</param-name>
+      <param-value>/jsp/</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletInventario</servlet-name>
+    <url-pattern>/ServletInventario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletCajera</display-name>
+    <servlet-name>ServletCajera</servlet-name>
+    <servlet-class>com.cajera.ServletCajera</servlet-class>
+    <init-param>
+      <param-name>rutaJsp</param-name>
+      <param-value>/jsp/</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCajera</servlet-name>
+    <url-pattern>/ServletCajera</url-pattern>
+  </servlet-mapping>
 </web-app>

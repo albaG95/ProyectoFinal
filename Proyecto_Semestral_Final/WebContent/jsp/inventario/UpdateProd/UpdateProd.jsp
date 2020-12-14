@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V1</title>
+	<title>ACTUALIZAR PRODUCTO</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/formulario.css" type="text/css"/>
@@ -33,20 +36,62 @@
 				<img src="images/img-03.png" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form" method="post" action="/Proyecto_Final_AGarrido/AdminUsers?accion=userUpdate" >
+			<form class="contact1-form validate-form" method="post" action="/Proyecto_Semestral_Final/ServletInventario?accion=UpdateProd" >
 				<span class="contact1-form-title">
-					Busqueda de usuario por correo
+					Lista de Productos
 				</span>
-
-				<div class="wrap-input1 validate-input" data-validate = "El correo es requerido: ejemplo@abc.com">
-					<input class="input1" type="text" name="email" id="email" placeholder="Correo Electrónico">
+                <div class="wrap-input1 validate-input" data-validate = "Tipo de usuario requerido">
+					<label for="formGroupExampleInput">Seleccione el producto</label>
+					<select class="input1" style="
+						    height: 50px;
+						    border-radius: 25px;
+						    padding: 0 30px;
+						" id="codigoProducto" name="codigoProducto" >
+					    <option value="" disabled selected>Seleccione una opcion</option>	   
+					    <c:forEach items="${productos}" var="prod">
+				        <option value="${prod.codigo}">${prod.nombre}</option>
+				    </c:forEach>
+					</select>
 					<span class="shadow-input1"></span>
 				</div>
-
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">CÃ³digo Producto</label>
+					<input class="input1" type="text" name="codigo" id="codigo" placeholder="codigo" >
+					<span class="shadow-input1"></span>
+				</div>
+				
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">Nombre Producto</label>
+					<input class="input1" type="text" name="nombre" id="nombre" placeholder="nombre" >
+					<span class="shadow-input1"></span>
+				</div>
+				
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">Cantidad inicial</label>
+					<input class="input1" type="text" name="existencia" id="existencia" placeholder="cantidad inicial" >
+					<span class="shadow-input1"></span>
+				</div>
+				
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">Cantidad Vendida</label>
+					<input class="input1" type="text" name="Vendidos" id="Vendidos" placeholder="vendidos" >
+					<span class="shadow-input1"></span>
+				</div>
+				
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">Cantidad stock</label>
+					<input class="input1" type="text" name="stock" id="stock" placeholder="stock" >
+					<span class="shadow-input1"></span>
+				</div>
+				<div class="wrap-input1 validate-input" data-validate = "Campo requerido">
+				    <label for="formGroupExampleInput">Precio unitario</label>
+					<input class="input1" type="text" name="precio" id="precio" placeholder="precio" >
+					<span class="shadow-input1"></span>
+				</div>
 				<div class="container-contact1-form-btn">
 					<button  class="contact1-form-btn">
 						<span>
-							Buscar Usuario
+							Actualizar Producto
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 						</span>
 					</button>
@@ -87,6 +132,23 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="<%=request.getContextPath()%>/js/validateUpdate.js"></script>
-
+    <script type="text/javascript">
+    $("#codigoProducto").change(function () {
+        var selectedValue = $(this).val();
+        
+        $.get('ServletInventario', {
+        	accion:'getProductoValues',
+            codigoProd : selectedValue
+    }, function(responseText) {
+    	console.log(responseText);
+    	$('#codigo').val(responseText.Codigo);
+    	$('#nombre').val(responseText.Nombre);
+    	$('#existencia').val(responseText.Existencia);
+    	$('#Vendidos').val(responseText.Vendidos);
+    	$('#stock').val(responseText.Total);
+    	$('#precio').val(responseText.precio);
+    });
+    });
+    </script>
 </body>
 </html>

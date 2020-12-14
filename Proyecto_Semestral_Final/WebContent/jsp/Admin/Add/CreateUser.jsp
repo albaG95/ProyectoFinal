@@ -33,7 +33,7 @@
 				<img src="images/img-03.png" alt="IMG">
 			</div>
 
-			<form class="contact1-form validate-form" method="post" action="/Proyecto_Final_AGarrido/AdminUsers?accion=userAdd" >
+			<form class="contact1-form validate-form" method="post" action="/Proyecto_Semestral_Final/AdminUsers?accion=userAdd" >
 				<span class="contact1-form-title">
 					Datos del nuevo usuario
 				</span>

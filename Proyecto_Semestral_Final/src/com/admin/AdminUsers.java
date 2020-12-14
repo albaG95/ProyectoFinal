@@ -123,7 +123,7 @@ public class AdminUsers extends HttpServlet {
 				 }else {
 					 request.setAttribute("addUserResponse","El usuario ya existe");
 				 }
-				 getServletContext().getRequestDispatcher(rutaJsp+"/Admin/UpdateUser/PostAddUser.jsp").forward(request,response);
+				 getServletContext().getRequestDispatcher(rutaJsp+"/Admin/Add/PostAddUser.jsp").forward(request,response);
 			 }else if(accion.equals("userUpdate")) {
 				 String email=request.getParameter("email");
 				 Administrador user = new Administrador();
@@ -163,7 +163,7 @@ public class AdminUsers extends HttpServlet {
 					}
 				 user.setCon(con);
 				 if(user.actualiarUsuario()) {
-					 request.setAttribute("good","Usuario fue actualiado");
+					 request.setAttribute("good","Usuario fue actualizado");
 					 getServletContext().getRequestDispatcher(rutaJsp+"/Admin/UpdateUser/UpdateUser.jsp").forward(request,response);
 				 }else{
 					 request.setAttribute("nombre",user.getNombre());
@@ -172,7 +172,7 @@ public class AdminUsers extends HttpServlet {
 					 //request.setAttribute("password",resp.getPassword());
 					 request.setAttribute("estado",user.getEstados());
 					 request.setAttribute("rolId",user.getRolId());
-					 request.setAttribute("error","Usuario no fue actualiado");
+					 request.setAttribute("error","Usuario no fue actualizado");
 					 getServletContext().getRequestDispatcher(rutaJsp+"/Admin/UpdateUser/postGetUsuario.jsp").forward(request,response);
 				 }
 			 }

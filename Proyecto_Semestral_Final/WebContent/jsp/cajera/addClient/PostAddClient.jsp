@@ -35,17 +35,17 @@
 
 			<form class="contact1-form validate-form">
 				<span class="contact1-form-title">
-					Respuesta creacion de usuario
+					Respuesta creacion de clientes
 				</span>
 
 				<div class="wrap-input1 validate-input" data-validate = "El nombre es requerido">
-					<P class="input1"><% out.println(" Tu usuario es :"+request.getAttribute("addUserResponse"));%>	</p>
+					<P class="input1"><% out.println(" Tu usuario es :"+request.getAttribute("addClientResponse"));%>	</p>
 					<span class="shadow-input1"></span>
 				</div>
 				<div class="container-contact1-form-btn">
 					<button class="contact1-form-btn">
 						<span>
-							<a href="/Proyecto_Semestral_Final/AdminUsers?accion=createUser">Regresar</a>
+							<a href="/Proyecto_Semestral_Final/ServletCajera?accion=createCliente">Regresar</a>
 							<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
 						</span>
 					</button>
@@ -73,7 +73,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="<%=request.getContextPath()%>/js/mainUsersAdd.js"></script>
+
 
 </body>
 </html>
